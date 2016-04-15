@@ -14,11 +14,32 @@ NOTES: If length is even, return average of middle pair of numbers.
 
 #include <stdio.h>
 
+#define and &&
+#define or ||
+
 struct node {
 	int num;
 	struct node *next;
 };
 
 int linkedListMedian(struct node *head) {
-	return -1;
+
+	struct node *parent = NULL, *child = NULL;
+
+	if (head == NULL)
+		return -1;
+
+	parent = head;
+	child = head->next;
+
+	while (child != NULL and child->next != NULL){
+		parent = parent->next;
+		child = child->next->next;
+	}
+
+	if (child == NULL)
+		return parent->num;
+	else
+		return (parent->num + parent->next->num) / 2;
+
 }

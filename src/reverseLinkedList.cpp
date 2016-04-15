@@ -17,7 +17,31 @@ struct node {
 	int num;
 	struct node *next;
 };
+typedef struct node *lptr;
+
+
 
 struct node * reverseLinkedList(struct node *head) {
-	return NULL;
+	lptr tmp1,tmphead = NULL,newhead = NULL;
+	
+	if (head == NULL)
+		return NULL;
+	if (head->next == NULL)
+		return head;
+	tmp1 = head;
+	tmphead = head->next;
+	while (tmphead != NULL){
+		if (newhead == NULL){
+			newhead = tmp1;
+			newhead->next = NULL;
+		}
+		else{
+			tmp1 = tmphead;
+			tmphead = tmphead->next;
+			tmp1->next = newhead;
+			newhead = tmp1;
+		}
+	}
+
+	return newhead;
 }
